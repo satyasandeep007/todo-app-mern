@@ -6,26 +6,26 @@ import Todolist from "./components/Todolist";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import axios from 'axios';
 
 export default class App extends React.Component {
-  toDos = [
-    {
-      task: "eating",
-      isComplete: false
-    },
-    {
-      task: "playing",
-      isComplete: false
-    },
-    {
-      task: "dancing",
-      isComplete: true
-    }
-  ];
-
+  
   state = {
-    toDos: this.toDos
+    toDos: ''
   };
+
+  componentDidMount() {
+    axios.get("http://localhost:5000/gettodos")
+      .then(res => {
+        const toDos = res.data;
+        const todo = toDos.todo;
+        console.log(todo);
+        
+        console.log(toDos);
+        
+        this.setState({ toDos  : toDos});
+      })
+  }
 
   createTask = task => {
     this.toDos.push({
@@ -60,6 +60,7 @@ export default class App extends React.Component {
         <Todolist
           toDos={this.state.toDos}
           deleteTask={this.deleteTask}
+          editTask = {this.editTask}
           handleCheck={this.handleCheck}
         />
         <Create createTask={this.createTask} todos={this.state.toDos} />

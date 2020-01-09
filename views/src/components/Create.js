@@ -49,6 +49,7 @@ export default class Create extends Component {
               type="type"
               className="form-control"
               id="inputPassword"
+              key="add"
               placeholder="Type something to add"
               ref="createinput"
             ></input>

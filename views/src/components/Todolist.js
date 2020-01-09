@@ -65,6 +65,7 @@ export default class Todolist extends Component {
               type="type"
               className="form-control"
               id="inputPassword"
+              key="search"
               placeholder="Search to Track"
               onChange={this.handleChange}
             ></input>

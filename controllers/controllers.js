@@ -1,5 +1,20 @@
- const  birds =  (req, res) => {
-  res.send('Birds home page')
+const Todo = require("../models/Todo");
+
+const todos = (req, res) => {
+    Todo.create({todo:req.body.todo}).then((todos) => {
+      res.json(todos)
+    }).catch((error) => {
+        res.send(error)
+    })
 }
 
-module.exports = birds
+const gettodos = (req, res) => {
+  Todo.find()
+    .then((response) => {
+      res.json(response)
+    }).catch((error) => {
+      res.send(error)
+    });
+}
+
+module.exports = {todos, gettodos};
