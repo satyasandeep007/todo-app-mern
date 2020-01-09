@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-/views/node_modules
+/backend/node_modules
 .pnp.js
 
 # testing
